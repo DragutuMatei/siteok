@@ -8,12 +8,7 @@ function ItemFiltered(props) {
         const link = "/shop/" + d.id;
         return (
           <div className="item" key={d.id}>
-            <img
-              src={
-               d.img
-              }
-              alt=""
-            />
+            <img src={d.img.split(";")[0]} alt="" />
             <h1>{d.nume}</h1>
             <h2>{d.cantitate > 0 ? "E in stoc" : "Nu e in stoc"}</h2>
             <Link to={link} className="mainButton">
