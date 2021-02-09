@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import port from "../components/port";
 
 function Item({ match }) {
   const [produs, setProdus] = useState([]);
@@ -14,7 +15,7 @@ function Item({ match }) {
 
 
   useEffect(() => {
-    Axios.post("http://localhost:5000/getItem", { id: match.params.id }).then(
+    Axios.post(port + "/getItem", { id: match.params.id }).then(
       (res) => {
         setProdus(res.data[0]);
         setColors(res.data[0].color.trim().split(" "));
@@ -48,7 +49,7 @@ function Item({ match }) {
     ) {
       setMesaj("Completeaza optiunile!");
     } else {
-      Axios.post("http://localhost:5000/addToCard", data).then((res) => {
+      Axios.post(port + "/addToCard", data).then((res) => {
         setMesaj(res.data);
       });
     }

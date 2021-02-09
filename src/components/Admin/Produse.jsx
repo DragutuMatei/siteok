@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import port from "../port";
 
 function Produse() {
   const [produse, setProduse] = useState([]);
@@ -66,7 +67,7 @@ function Produse() {
     ) {
       setEmpty("Toate campurile trebuie completate!");
     } else {
-      Axios.post("http://localhost:5000/admin/add", data, {
+      Axios.post(port + "/admin/add", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -79,7 +80,7 @@ function Produse() {
   //2
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/produse").then((res) =>
+    Axios.get(port + "/produse").then((res) =>
       setProduse(res.data)
     );
   }, []);
@@ -104,7 +105,7 @@ function Produse() {
     data.append("size", size);
     data.append("descriere", descriere);
 
-    Axios.post("http://localhost:5000/admin/updateProduse", data).then(
+    Axios.post(port+"/admin/updateProduse", data).then(
       (res) => {
         setProduse(res.data);
       }
@@ -112,7 +113,7 @@ function Produse() {
   };
 
   const sterge = (id) => {
-    Axios.post("http://localhost:5000/admin/delete", {
+    Axios.post(port + "/admin/delete", {
       id: id,
     }).then((res) => {
       setProduse(res.data);

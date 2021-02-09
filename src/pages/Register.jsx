@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import port from "../components/port";
 
 function Register() {
   const [nume, setNume] = useState("");
@@ -19,7 +20,7 @@ function Register() {
     if (nume === "" || email === "" || file === [] || password === "") {
       setEmpty("Toate campurile trebuie completate!");
     } else {
-      Axios.post("http://localhost:5000/register", data, {
+      Axios.post(port+"/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

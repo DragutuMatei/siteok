@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import ItemFiltered from "./ItemFiltered";
+import port from "../port";
 
 function Items() {
   const [data, setData] = useState([]);
@@ -11,7 +12,7 @@ function Items() {
   const [min, setPretMin] = useState(0);
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/produse").then((res) => {
+    Axios.get(port+"/produse").then((res) => {
       setData(res.data);
     });
   }, []);

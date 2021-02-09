@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import port from "../port";
 
 function CardsProducts() {
   const [errorMesaj, setLoginError] = useState("");
@@ -11,7 +12,7 @@ function CardsProducts() {
 
   useEffect(() => {
     if (localStorage.getItem("nume")) {
-      Axios.post("http://localhost:5000/productsFromCard", {
+      Axios.post(port + "/productsFromCard", {
         name: localStorage.getItem("nume"),
       }).then((res) => {
         setData(res.data);
@@ -23,7 +24,7 @@ function CardsProducts() {
 
   useEffect(() => {
     if (localStorage.getItem("nume")) {
-      Axios.post("http://localhost:5000/total", {
+      Axios.post(port + "/total", {
         nume: localStorage.getItem("nume"),
       }).then((res) => {
         setTotal(res.data["SUM(pret)"]);
@@ -38,7 +39,7 @@ function CardsProducts() {
     if (cantitate < 1) {
       setErr("cantitatea trb sa fie peste 0!");
     } else {
-      Axios.post("http://localhost:5000/shimbaCantitate", {
+      Axios.post(port+"/shimbaCantitate", {
         id: id,
         cantitate: cantitate,
         produs_id: produs_id,
@@ -49,7 +50,7 @@ function CardsProducts() {
   };
 
   const deleteItem = (id) => {
-    Axios.post("http://localhost:5000/deleteItem", { id: id }).then((res) => {
+    Axios.post(port+ "/deleteItem", { id: id }).then((res) => {
       setData((data) => res.data);
     });
   };
@@ -76,7 +77,14 @@ function CardsProducts() {
                 return (
                   <tr key={d.id}>
                     <td>{d.id}</td>
-                    <td><a style={{color:"black"}} href={"shop/" + d.produs_id}>{d.nume_produs}</a></td>
+                    <td>
+                      <a
+                        style={{ color: "black" }}
+                        href={"shop/" + d.produs_id}
+                      >
+                        {d.nume_produs}
+                      </a>
+                    </td>
                     <td>
                       <div className="td">
                         <input

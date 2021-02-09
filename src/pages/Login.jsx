@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import port from "../components/port";
 
 function Login() {
   const [name, setNume] = useState("");
@@ -14,7 +15,7 @@ function Login() {
     if (name === "" || password === "") {
       setEmpty("Toate campurile trebuie completate!");
     } else {
-      Axios.post("http://localhost:5000/login", data).then((res) => {
+      Axios.post(port + "/login", data).then((res) => {
         if (res.data.ok === false) {
           setError(res.data.msg);
         } else {

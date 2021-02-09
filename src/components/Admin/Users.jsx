@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import port from "../port";
 
 function Users() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/admin/users").then((res) => {
+    Axios.get(port + "/admin/users").then((res) => {
       setUsers(res.data);
     });
   }, []);
 
   const sterge = (id) => {
-    Axios.post("http://localhost:5000/admin/deleteUser", {
+    Axios.post(port + "/admin/deleteUser", {
       id: id,
     }).then((res) => {
       setUsers(res.data);
