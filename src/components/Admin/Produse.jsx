@@ -20,7 +20,7 @@ function Produse() {
   const [color, setColor] = useState("");
   const [cant, setCant] = useState("");
   const [syze, setSyze] = useState("");
-  const [img, setImg] = useState([]);
+  const [img, setImg] = useState("");
   const [imgName, setImgName] = useState("");
   const [descrier, setDescrier] = useState("");
   const [empty, setEmpty] = useState("");
@@ -36,11 +36,14 @@ function Produse() {
   const file = (a) => {
     let n = [];
     for (let i = 0; i < a.length; i++) {
-      n.push(a[i]);
+      const reader = new FileReader();
+      reader.readAsDataURL(a[i]);
+      reader.onload = () => {
+        n.push(reader.result);
+      };
     }
     setImg(n);
   };
-
   const submit = () => {
     const data = new FormData();
     data.append("nume", name);
