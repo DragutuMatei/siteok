@@ -44,6 +44,7 @@ function Produse() {
     }
     setImg(n);
   };
+  
   const submit = () => {
     const data = new FormData();
     data.append("nume", name);

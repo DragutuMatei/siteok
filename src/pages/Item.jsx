@@ -28,7 +28,7 @@ function Item({ match }) {
         setPret(res.data[0].pret);
       }
     );
-  }, []);
+  }, [match.params.id]);
 
   const addToCard = () => {
     const data = new FormData();

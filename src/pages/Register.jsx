@@ -6,7 +6,7 @@ function Register() {
   const [nume, setNume] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState("");
   const [res, setRes] = useState("");
   const [empty, setEmpty] = useState("");
 
@@ -17,10 +17,10 @@ function Register() {
     data.append("file", file);
     data.append("parola", password);
 
-    if (nume === "" || email === "" || file === [] || password === "") {
+    if (nume === "" || email === "" || file === "" || password === "") {
       setEmpty("Toate campurile trebuie completate!");
     } else {
-      Axios.post(port+"/register", data, {
+      Axios.post(port + "/register", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -29,6 +29,14 @@ function Register() {
       });
       window.location.pathname = "/login";
     }
+  };
+
+  const editFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setFile(reader.result);
+    };
   };
 
   return (
@@ -48,7 +56,7 @@ function Register() {
         <input
           type="file"
           onChange={(e) => {
-            setFile(e.target.files[0]);
+            editFile(e.target.files[0]);
           }}
         />
         <input
