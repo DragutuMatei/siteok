@@ -39,8 +39,9 @@ function CardsProducts() {
     if (cantitate < 1) {
       setErr("cantitatea trb sa fie peste 0!");
     } else {
-      Axios.post(port+"/shimbaCantitate", {
+      Axios.post(port + "/shimbaCantitate", {
         id: id,
+        nume: window.localStorage.getItem("nume"),
         cantitate: cantitate,
         produs_id: produs_id,
       }).then((res) => {
@@ -50,7 +51,7 @@ function CardsProducts() {
   };
 
   const deleteItem = (id) => {
-    Axios.post(port+ "/deleteItem", { id: id }).then((res) => {
+    Axios.post(port + "/deleteItem", { id: id }).then((res) => {
       setData((data) => res.data);
     });
   };
