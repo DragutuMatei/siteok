@@ -41,18 +41,21 @@ function CardsProducts() {
     } else {
       Axios.post(port + "/shimbaCantitate", {
         id: id,
-        nume: window.localStorage.getItem("nume"),
+        nume: localStorage.getItem("nume"),
         cantitate: cantitate,
         produs_id: produs_id,
       }).then((res) => {
-        setData((data) => res.data);
+        setData(res.data);
       });
     }
   };
 
   const deleteItem = (id) => {
-    Axios.post(port + "/deleteItem", { id: id }).then((res) => {
-      setData((data) => res.data);
+    Axios.post(port + "/deleteItem", {
+      id: id,
+      nume: localStorage.getItem("nume"),
+    }).then((res) => {
+      setData(res.data);
     });
   };
 
