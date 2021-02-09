@@ -21,7 +21,7 @@ function Item({ match }) {
         setColors(res.data[0].color.trim().split(" "));
         setSizes(res.data[0].size.trim().split(" "));
         setImg(
-          res.data[0].img.split(" ").filter((im) => {
+          res.data[0].img.split(";").pop().filter((im) => {
             return im !== "";
           })
         );

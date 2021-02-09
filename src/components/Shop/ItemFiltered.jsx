@@ -9,12 +9,12 @@ function ItemFiltered(props) {
         console.log(d);
         return (
           <div className="item" key={d.id}>
-            {/* <img src={d.img.split(";")[0]} alt="" /> */}
-            {/* <h1>{d.nume}</h1> */}
-            {/* <h2>{d.cantitate > 0 ? "E in stoc" : "Nu e in stoc"}</h2> */}
-            {/* <Link to={link} className="mainButton"> */}
-              {/* buy */}
-            {/* </Link> */}
+            <img src={d.img.split(";")[0]} alt="" />
+            <h1>{d.nume}</h1>
+            <h2>{d.cantitate > 0 ? "E in stoc" : "Nu e in stoc"}</h2>
+            <Link to={link} className="mainButton">
+              buy
+            </Link>
           </div>
         );
       })}
