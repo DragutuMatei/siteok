@@ -12,7 +12,7 @@ function Items() {
   const [min, setPretMin] = useState(0);
 
   useEffect(() => {
-    Axios.get(port+"/produse").then((res) => {
+    Axios.get(port + "/produse").then((res) => {
       setData(res.data);
     });
   }, []);

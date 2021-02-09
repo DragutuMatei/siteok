@@ -143,7 +143,7 @@ function Item({ match }) {
                   return (
                     <img
                       key={1}
-                      src={require("../assets/produse/" + img).default}
+                      src={img}
                       alt=""
                     />
                   );
@@ -155,7 +155,7 @@ function Item({ match }) {
                 return (
                   <img
                     key={im}
-                    src={require("../assets/produse/" + im).default}
+                    src={im}
                     alt=""
                   />
                 );

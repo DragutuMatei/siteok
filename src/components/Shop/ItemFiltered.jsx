@@ -10,7 +10,7 @@ function ItemFiltered(props) {
           <div className="item" key={d.id}>
             <img
               src={
-                require("../../assets/produse/" + d.img.split(" ")[0]).default
+               d.img
               }
               alt=""
             />
