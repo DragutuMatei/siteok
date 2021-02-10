@@ -14,6 +14,7 @@ function Items() {
   useEffect(() => {
     Axios.get(port + "/produse").then((res) => {
       setData(res.data);
+      console.log(res.data);
     });
   }, []);
 
