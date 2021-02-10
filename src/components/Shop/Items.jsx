@@ -17,16 +17,16 @@ function Items() {
   useEffect(() => {
     Axios.get(port + "/produse").then((res) => {
       setData(res.data);
-      console.log(res.data);
+      console.log(res.data[0]);
     });
     Axios.get(port + "/getTipuri").then((r) => {
-      setTipuri(r.data);
+      setTipuri(r.data[0]);
     });
     Axios.get(port + "/getMarimi").then((r) => {
-      setMarimi(r.data);
+      setMarimi(r.data[0]);
     });
     Axios.get(port + "/getCulori").then((r) => {
-      setCulori(r.data);
+      setCulori(r.data[0]);
     });
   }, []);
 
