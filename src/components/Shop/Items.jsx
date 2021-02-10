@@ -17,19 +17,16 @@ function Items() {
   useEffect(() => {
     Axios.get(port + "/produse").then((res) => {
       setData(res.data);
-      console.log(res.data[0]);
     });
     Axios.get(port + "/getTipuri").then((r) => {
-      // setTipuri(r.data[0]);
-      console.log(r.data)
+      setTipuri(r.data);
     });
     Axios.get(port + "/getMarimi").then((r) => {
-      console.log(r.data)
-      // setMarimi(r.data[0]);
+      setMarimi(r.data);
     });
     Axios.get(port + "/getCulori").then((r) => {
-      console.log(r.data)
-      // setCulori(r.data[0]);
+      // console.log(r.data)
+      setCulori(r.data);
     });
   }, []);
 
@@ -65,7 +62,7 @@ function Items() {
             <option value="sapca">sapca</option>
             <option value="blugi">blugi</option> */}
             {tipuri.map((tip) => (
-              <option value={tip}>{tip}</option>
+              <option value={tip.tip}>{tip.tip}</option>
             ))}
           </select>
         </div>
@@ -87,7 +84,7 @@ function Items() {
             <option value="XXL">XXL</option> */}
 
             {marimi.map((marime) => (
-              <option value={marime}>{marime}</option>
+              <option value={marime.size}>{marime.size}</option>
             ))}
           </select>
         </div>
@@ -105,7 +102,7 @@ function Items() {
             <option value="white">white</option> */}
 
             {culori.map((cul) => (
-              <option value={cul}>{cul}</option>
+              <option value={cul.color}>{cul.color}</option>
             ))}
           </select>
         </div>
