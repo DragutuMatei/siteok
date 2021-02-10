@@ -20,13 +20,16 @@ function Items() {
       console.log(res.data[0]);
     });
     Axios.get(port + "/getTipuri").then((r) => {
-      setTipuri(r.data[0]);
+      // setTipuri(r.data[0]);
+      console.log(r.data)
     });
     Axios.get(port + "/getMarimi").then((r) => {
-      setMarimi(r.data[0]);
+      console.log(r.data)
+      // setMarimi(r.data[0]);
     });
     Axios.get(port + "/getCulori").then((r) => {
-      setCulori(r.data[0]);
+      console.log(r.data)
+      // setCulori(r.data[0]);
     });
   }, []);
 
