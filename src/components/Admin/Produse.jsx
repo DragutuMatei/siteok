@@ -78,7 +78,7 @@ function Produse() {
           "Content-Type": "multipart/form-data",
         },
       }).then((res) => {
-        setProduse(res.data);
+        setProduse(res.data.resp);
         if (res.data.ok) {
           setOk1(true);
         }
