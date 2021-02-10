@@ -25,6 +25,8 @@ function Produse() {
   const [descrier, setDescrier] = useState("");
   const [empty, setEmpty] = useState("");
 
+  const [ok1, setOk1] = useState(false);
+
   const Nume = (a) => {
     let n = "";
     for (let i = 0; i < a.length; i++) {
@@ -44,7 +46,7 @@ function Produse() {
     }
     setImg(n);
   };
-  
+
   const submit = () => {
     const data = new FormData();
     data.append("nume", name);
@@ -77,6 +79,9 @@ function Produse() {
         },
       }).then((res) => {
         setProduse(res.data);
+        if (res.data.ok) {
+          setOk1(true);
+        }
       });
     }
   };
@@ -84,9 +89,7 @@ function Produse() {
   //2
 
   useEffect(() => {
-    Axios.get(port + "/produse").then((res) =>
-      setProduse(res.data)
-    );
+    Axios.get(port + "/produse").then((res) => setProduse(res.data));
   }, []);
 
   const updateItem = (name, id) => {
@@ -109,11 +112,9 @@ function Produse() {
     data.append("size", size);
     data.append("descriere", descriere);
 
-    Axios.post(port+"/admin/updateProduse", data).then(
-      (res) => {
-        setProduse(res.data);
-      }
-    );
+    Axios.post(port + "/admin/updateProduse", data).then((res) => {
+      setProduse(res.data);
+    });
   };
 
   const sterge = (id) => {
@@ -215,6 +216,7 @@ function Produse() {
           <button type="submit" onClick={submit} className="button">
             submit
           </button>
+          {ok1 && <h1>ok</h1>}
         </div>
         {empty}
       </div>
