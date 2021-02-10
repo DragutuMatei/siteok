@@ -10,11 +10,23 @@ function Items() {
   const [color, setColor] = useState("any");
   const [max, setPretMax] = useState(500);
   const [min, setPretMin] = useState(0);
+  const [tipuri, setTipuri] = useState([]);
+  const [marimi, setMarimi] = useState([]);
+  const [culori, setCulori] = useState([]);
 
   useEffect(() => {
     Axios.get(port + "/produse").then((res) => {
       setData(res.data);
       console.log(res.data);
+    });
+    Axios.get(port + "/getTipuri").then((r) => {
+      setTipuri(r.data);
+    });
+    Axios.get(port + "/getMarimi").then((r) => {
+      setMarimi(r.data);
+    });
+    Axios.get(port + "/getCulori").then((r) => {
+      setCulori(r.data);
     });
   }, []);
 
@@ -45,10 +57,13 @@ function Items() {
             }}
           >
             <option value="any">any</option>
-            <option value="hanorac">hanorac</option>
+            {/*  <option value="hanorac">hanorac</option>
             <option value="tricou">tricou</option>
             <option value="sapca">sapca</option>
-            <option value="blugi">blugi</option>
+            <option value="blugi">blugi</option> */}
+            {tipuri.map((tip) => (
+              <option value={tip}>{tip}</option>
+            ))}
           </select>
         </div>
         <div
@@ -60,13 +75,17 @@ function Items() {
           <h3>Marime</h3>
           <select>
             <option value="any">any</option>
-            <option value="XXS">XXS</option>
+            {/* <option value="XXS">XXS</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
+            <option value="XXL">XXL</option> */}
+
+            {marimi.map((marime) => (
+              <option value={marime}>{marime}</option>
+            ))}
           </select>
         </div>
         <div className="select">
@@ -77,10 +96,14 @@ function Items() {
             }}
           >
             <option value="any">any</option>
-            <option value="red">red</option>
+            {/* <option value="red">red</option>
             <option value="black">black</option>
             <option value="blue">blue</option>
-            <option value="white">white</option>
+            <option value="white">white</option> */}
+
+            {culori.map((cul) => (
+              <option value={cul}>{cul}</option>
+            ))}
           </select>
         </div>
         <div className="pret">
